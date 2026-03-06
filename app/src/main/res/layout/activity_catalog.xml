@@ -5,15 +5,31 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
+    <FrameLayout
+        android:id="@+id/layoutProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvTitle">
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_user"
+            app:tint="#D81B60" />
+    </FrameLayout>
+
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Catálogo"
-        android:textColor="#333333"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:text="FlorAbby"
+        android:textColor="#D81B60"
+        android:textSize="22sp"
+        android:textStyle="italic|bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,19 +39,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
+        android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="@id/tvTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvTitle">
-
         <ImageView
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:src="@drawable/ic_cart" />
-
+            android:src="@drawable/ic_cart"
+            app:tint="#333333" />
         <TextView
             android:id="@+id/tvCartBadge"
-            android:layout_width="19dp"
-            android:layout_height="wrap_content"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:layout_gravity="top|end"
             android:background="@drawable/circle_red"
             android:gravity="center"
@@ -45,75 +61,78 @@
             android:textStyle="bold" />
     </FrameLayout>
 
-    <HorizontalScrollView
-        android:id="@+id/filterScroll"
+    <TextView
+        android:id="@+id/tvSectionSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Catálogo"
+        android:textColor="#333333"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCategories"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:scrollbars="none"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="#D81B60"
-                android:text="Ramos"
-                android:textAllCaps="false"
-                android:textColor="#FFFFFF" />
-
-            <Button
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:text="Rosas"
-                android:textAllCaps="false"
-                android:textColor="#666666" />
-
-            <Button
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:text="Tulipanes"
-                android:textAllCaps="false"
-                android:textColor="#666666" />
-
-            <Button
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:text="Especiales"
-                android:textAllCaps="false"
-                android:textColor="#666666" />
-
-            <Button
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:text="Ortencias"
-                android:textAllCaps="false"
-                android:textColor="#666666" />
-        </LinearLayout>
-    </HorizontalScrollView>
+        android:clipToPadding="false"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/tvSectionSubtitle" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCatalog"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/filterScroll" />
+        app:layout_constraintTop_toBottomOf="@id/rvCategories" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="-12dp"
+            app:cardBackgroundColor="#FCE4EC"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="20dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:text="¡Pregúntanos por WhatsApp!"
+                android:textColor="#D81B60"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabSupport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_help_whatsapp"
+            app:backgroundTint="#D81B60"
+            app:tint="#FFFFFF"
+            app:elevation="6dp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

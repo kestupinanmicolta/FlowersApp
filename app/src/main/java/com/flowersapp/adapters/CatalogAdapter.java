@@ -13,15 +13,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.flowersapp.R;
 import com.flowersapp.data.model.Catalog;
+import com.flowersapp.data.model.User;
 
 import java.text.DecimalFormat;
 import java.util.List;
 
 public class CatalogAdapter extends RecyclerView.Adapter<CatalogAdapter.CatalogViewHolder> {
     public List<Catalog> catalogList;
+    private User user;
 
-    public CatalogAdapter(List<Catalog> catalogList) {
+    public CatalogAdapter(List<Catalog> catalogList, User user) {
         this.catalogList = catalogList;
+        this.user=user;
     }
 
     @NonNull
@@ -40,7 +43,7 @@ public class CatalogAdapter extends RecyclerView.Adapter<CatalogAdapter.CatalogV
         holder.tvFlowerPrice.setText(formatter.format(catalog.getPrice()));
         holder.ivFlower.setImageResource(catalog.getImage());
         holder.itemView.setOnClickListener(v -> {
-            goToProductDetail(v.getContext(), catalog);
+            goToProductDetail(v.getContext(), catalog,user);
         });
     }
 
@@ -48,14 +51,21 @@ public class CatalogAdapter extends RecyclerView.Adapter<CatalogAdapter.CatalogV
     public int getItemCount() {
         return catalogList != null ? catalogList.size() : 0;
     }
+
     public static class CatalogViewHolder extends RecyclerView.ViewHolder {
         TextView tvFlowerName, tvFlowerPrice;
         ImageView ivFlower;
+
         public CatalogViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvFlowerName=itemView.findViewById(R.id.tvFlowerName);
-            tvFlowerPrice=itemView.findViewById(R.id.tvFlowerPrice);
-            ivFlower=itemView.findViewById(R.id.ivFlower);
+            tvFlowerName = itemView.findViewById(R.id.tvFlowerName);
+            tvFlowerPrice = itemView.findViewById(R.id.tvFlowerPrice);
+            ivFlower = itemView.findViewById(R.id.ivFlower);
         }
+    }
+
+    public void updateList(List<Catalog> newList) {
+        this.catalogList = newList; // 'listaFlores' debe ser el nombre de tu lista interna
+        notifyDataSetChanged();
     }
 }

@@ -4,19 +4,20 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.flowersapp.data.repository.LoginRepository;
+import com.flowersapp.data.model.User;
+import com.flowersapp.data.repository.UserRepository;
 
 public class LoginViewModel extends ViewModel {
-    private LoginRepository repository = new LoginRepository();
-    private MutableLiveData<Boolean> loginResult = new MutableLiveData<>();
-
-    public LiveData<Boolean>    getLoginResult() {
+    private MutableLiveData<User> loginResult = new MutableLiveData<>();
+    public LiveData<User> getLoginResult() {
         return loginResult;
     }
-
-    public void realizarLogin(String email, String password) {
-        // El ViewModel le delega la responsabilidad al Repositorio
-        boolean isValid = repository.verifyCredentials(email, password);
-        loginResult.setValue(isValid);
+    public void realizarLogin(String email, String pass) {
+        User user = UserRepository.login(email, pass);
+        if (user != null) {
+            loginResult.setValue(user);
+        } else {
+            loginResult.setValue(null);
+        }
     }
 }

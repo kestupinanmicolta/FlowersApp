@@ -1,12 +1,18 @@
 package com.flowersapp.data.model;
 
-public class Car {
+import java.io.Serializable;
+
+public class Cart implements Serializable {
     private String name;
     private double price;
     private int cantidad;
     private int image;
 
-    public Car(String name, double price, int cantidad, int image) {
+    public Cart() {
+
+    }
+
+    public Cart(String name, double price, int cantidad, int image) {
         this.name = name;
         this.price = price;
         this.cantidad = cantidad;
