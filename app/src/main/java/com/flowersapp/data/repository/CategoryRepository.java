@@ -11,11 +11,10 @@ public class CategoryRepository {
 
     static {
         typeFlowerList.add(new Category(0, "Todas"));
-        typeFlowerList.add(new Category(1, "Ramos"));
-        typeFlowerList.add(new Category(2, "Rosas"));
-        typeFlowerList.add(new Category(3, "Tulipanes"));
-        typeFlowerList.add(new Category(4, "Especiales"));
-        typeFlowerList.add(new Category(5, "Hortensias"));
+        typeFlowerList.add(new Category(1, "Rosas"));
+        typeFlowerList.add(new Category(2, "Tulipanes"));
+        typeFlowerList.add(new Category(3, "Especiales"));
+        typeFlowerList.add(new Category(4, "Hortensias"));
     }
     public static List<Category> getCategory() {
         return typeFlowerList;
